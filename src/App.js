@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     counters: [
         { id: 1, value: 0 },
-        { id: 2, value: 2 },
+        { id: 2, value: 0 },
         { id: 3, value: 0 },
         { id: 4, value: 0 },
         { id: 5, value: 0 }
@@ -37,9 +37,18 @@ class App extends Component {
 
     counters[index].value += 1
     this.setState({ counters })
-
   }
 
+  handleDecrement = counterId => {
+    
+    const counters = [...this.state.counters]
+    const index = counters.indexOf(counters.find(c => c.id === counterId))
+
+    if (counters[index].value > 0) {
+      counters[index].value -= 1
+      this.setState({ counters })
+    }
+  }
 
   render() {
     return (
@@ -49,6 +58,7 @@ class App extends Component {
           <Counters 
             counters={this.state.counters}
             onIncrement={this.handleIncrement} 
+            onDecrement={this.handleDecrement} 
             onReset={this.handleRest} 
             onDelete={this.handleDelete} 
           />

@@ -13,6 +13,10 @@ class Counter extends Component {
     return classes;
   }
 
+  isCounterValueZero() {
+    return this.props.counter.value === 0 ? true: false;
+  }
+
   render() {
     return (
       <div>
@@ -23,7 +27,14 @@ class Counter extends Component {
           onClick={() => this.props.onIncrement(this.props.counter.id)}
           className="btn btn-secondary btn-sm"
         >
-          Increment
+          +
+        </button>
+        &nbsp;
+        <button
+          onClick={() => this.props.onDecrement(this.props.counter.id)}
+          className="btn btn-secondary btn-sm" disabled={this.isCounterValueZero()}
+        >
+          -
         </button>
         <button
           onClick={() => this.props.onDelete(this.props.counter.id)}
