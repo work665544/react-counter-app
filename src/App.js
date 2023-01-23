@@ -9,12 +9,23 @@ class App extends Component {
   state = {
     counters: [
         { id: 1, value: 0 },
-        { id: 2, value: 0 },
+        { id: 2, value: 4 },
         { id: 3, value: 0 },
         { id: 4, value: 0 },
         { id: 5, value: 0 }
     ]
   };
+
+  constructor() {
+    super();
+    console.log("App - Constructure");
+  }
+
+  componentDidMount() {
+    // It is useful to make ajax call to get data from server.
+    // And then call this.setState({}) to update the state data.
+    console.log("App - Mounted");
+  }
 
   handleRest = () => {
     const counters = this.state.counters.map((c) => {
@@ -51,6 +62,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("App - Render");
     return (
       <>
         <Navbar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
